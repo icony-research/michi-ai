@@ -1,0 +1,79 @@
+# Git関連
+.git
+.gitignore
+
+# Python関連
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# 仮想環境
+venv/
+env/
+ENV/
+
+# IDE関連
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS関連
+.DS_Store
+Thumbs.db
+
+# 動画・データファイル（大きいファイルを除外）
+*.mp4
+*.avi
+*.mov
+
+# 結果ファイル
+results/*.csv
+results/*.json
+results/*.txt
+
+# 車両画像
+vehicle_images/**/*.jpg
+vehicle_images/**/*.png
+
+# モデルファイル（大きいファイル）
+models/*.pt
+models/*.engine
+models/*.onnx
+
+# 学習データ
+car_classfier/data/**/*.jpg
+car_classfier/data/**/*.png
+car_classfier/data_raw/**
+
+# TensorRTキャッシュ
+*.engine
+*.trt
+
+# ログファイル
+*.log
+
+# 一時ファイル
+*.tmp
+*.bak
+*.backup
+
+# ドキュメント（必要に応じて調整）
+docs/*.md
+
+# テストファイル
+test_*.py
+profile.json
+
+# Docker関連
+Dockerfile
+Dockerfile.cpu
+docker-compose.yml
+.dockerignore

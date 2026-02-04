@@ -1,0 +1,119 @@
+{
+  "paths": {
+    "input_base": "",
+    "output_base": ""
+  },
+  "video": {
+    "input_file": "",
+    "output_file": "",
+    "codec": "mp4v",
+    "enable_output": false,
+    "output_fps": 30,
+    "output_queue_size": 240
+  },
+  "model": {
+    "model_file": "models/yolov8m.pt",
+    "confidence_threshold": 0.3,
+    "iou_threshold": 0.4,
+    "image_size": 320,
+    "device": "auto"
+  },
+  "detection": {
+    "vehicle_classes": [
+      2,
+      3,
+      5,
+      7
+    ],
+    "class_names": {
+      "2": "car",
+      "3": "motorcycle",
+      "5": "bus",
+      "7": "truck"
+    }
+  },
+  "tracking": {
+    "track_activation_threshold": 0.3,
+    "lost_track_buffer": 90,
+    "minimum_matching_threshold": 0.7,
+    "frame_rate": 30,
+    "triggering_anchors": "BOTTOM_CENTER",
+    "crossing_history_length": 5,
+    "minimum_crossing_threshold": 2
+  },
+  "line": {
+    "start_x": 100,
+    "start_y": 250,
+    "end_x": 1400,
+    "end_y": 250,
+    "thickness": 2
+  },
+  "visualization": {
+    "box_thickness": 2,
+    "label_text_scale": 0.5,
+    "label_text_thickness": 1,
+    "label_text_padding": 5,
+    "font_path": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+    "font_size": 32
+  },
+  "output": {
+    "save_csv": true,
+    "save_json": true,
+    "csv_file": "results/traffic_count.csv",
+    "json_file": "results/traffic_count.json",
+    "results_folder": "results"
+  },
+  "performance": {
+    "use_gpu": true,
+    "frame_skip": 0,
+    "show_preview": true,
+    "use_tensorrt": false,
+    "tensorrt_precision": "fp16",
+    "tensorrt_workspace": 4,
+    "use_adaptive_skip": false,
+    "use_batch_inference": false,
+    "batch_size": 8,
+    "use_async_inference": false,
+    "frame_queue_size": 24,
+    "num_inference_threads": 2
+  },
+  "language": "ja",
+  "lines": {
+    "up_line": {
+      "start_x": 1278,
+      "start_y": 426,
+      "end_x": 13,
+      "end_y": 427,
+      "thickness": 2
+    },
+    "down_line": {
+      "start_x": 806,
+      "start_y": 353,
+      "end_x": 1233,
+      "end_y": 353,
+      "thickness": 2
+    },
+    "mode": "single"
+  },
+  "vehicle_images": {
+    "save_images": true,
+    "output_folder": "results",
+    "line_proximity_threshold": 50
+  },
+  "recognition_results": {
+    "save_results": true,
+    "output_folder": "results",
+    "auto_save_on_completion": true,
+    "crossing_vehicles_only": false,
+    "record_all_detections": false,
+    "include_failed_saves": true
+  },
+  "time_settings": {
+    "video_start_time": "12:00:00"
+  },
+  "vehicle_classification": {
+    "enabled": true,
+    "model_path": "car_classfier/vehicle_model.pt",
+    "confidence_threshold": 0.6
+  }
+}

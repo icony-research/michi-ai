@@ -1,0 +1,75 @@
+# バックアップファイル（旧tkinter版）
+*.backup
+*_tkinter_old.*
+
+# YOLOモデルファイル（大容量のため除外）
+models/*.pt
+models/*.engine
+models/*.onnx
+models/*.cache
+!models/.gitkeep
+
+*.pt
+
+# 動画ファイル（大容量のため除外）
+*.mp4
+*.avi
+*.mov
+
+# 結果ファイル（個人データのため除外）
+results/*.csv
+results/*.json
+results/vehicle_images/down/*.jpg
+results/vehicle_images/up/*.jpg
+results/vehicle_images/single/*.jpg
+!results/.gitkeep
+
+csv/*
+
+# Configファイル（個人設定のため除外）
+configs/*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ログファイル
+*.log
+
+# 一時ファイル
+*.tmp
+*.bak
+*.backup
