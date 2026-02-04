@@ -6,6 +6,10 @@ This project focuses on transparency and reproducibility for public infrastructu
 MICHI-AIは、道路脇の映像データから道路交通状況を分析するための、AGPLライセンスに基づくオープンソースAIシステムです。
 GUI から動画を読み込み、ライン通過数・時間帯別集計・車種別集計・CSV/JSON 出力を行います。
 
+## Overview
+
+![MICHI-AI overview](docs/images/demo_gui.png)
+
 ## 特徴
 
 - YOLOv8 による車両検出
@@ -144,7 +148,7 @@ MICHI-AI depends on the following third-party open-source libraries:
   https://github.com/roboflow/supervision
 
 - Pillow  
-  License: MIT-CMU License
+  License: MIT-CMU License  
   https://python-pillow.github.io
 
 - NumPy  
