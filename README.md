@@ -144,8 +144,8 @@ MICHI-AI depends on the following third-party open-source libraries:
   https://github.com/roboflow/supervision
 
 - Pillow  
-  License: HPND License  
-  https://python-pillow.org/
+  License: MIT-CMU License
+  https://python-pillow.github.io
 
 - NumPy  
   License: BSD License  
