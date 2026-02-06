@@ -1,131 +1,118 @@
 # MICHI-AI
 
-MICHI-AI is an AGPL-licensed open-source AI system for road traffic analysis from roadside video data.
-This project focuses on transparency and reproducibility for public infrastructure and research use.
+📄 日本語版READMEはこちら →[README_ja.md](README.ja.md)
 
-MICHI-AIは、道路脇の映像データから道路交通状況を分析するための、AGPLライセンスに基づくオープンソースAIシステムです。
-GUI から動画を読み込み、ライン通過数・時間帯別集計・車種別集計・CSV/JSON 出力を行います。
+Traffic surveys are still labor-intensive and difficult to reproduce.
+MICHI-AI is a research project that explores how AI can assist
+traffic volume analysis workflows.
 
 ## Overview
 
 ![MICHI-AI overview](docs/images/demo_gui.png)
 
-## 特徴
+## Features
 
-- YOLOv8 による車両検出
-- ByteTrack による追跡と通過カウント
-- 時間帯別集計 / 車種別集計
-- CSV / JSON 出力
-- 画像保存（オプション）
-- GPU / TensorRT 対応（任意）
+- Vehicle detection using YOLOv8
+- Tracking and passing counting using ByteTrack
+- Aggregation by time period / vehicle type
+- CSV / JSON output
+- Image saving (optional)
+- GPU / TensorRT support (optional)
 
-## 動作環境
-確認できている範囲は記載のとおりです。他の環境でも動作する可能性はあります。
+## System Requirements
+The following are the confirmed requirements. It may work on other environments.
 - Python 3.10+
 - OS: Linux / Windows
-- GPU 使用時: NVIDIA GPU + CUDA
+- GPU: NVIDIA GPU + CUDA
 
-## インストール
+## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-GPU 使用時（CUDA 11.8 の例）:
+When using a GPU (CUDA 11.8 example):
 
 ```bash
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
 ```
 
-## フォルダ準備
+## Folder Preparation
 
 ```bash
 python setup_folders.py
 ```
 
-## YOLOv8モデルのダウンロード
+## Downloading a YOLOv8 Model
 
-[Ultralytics公式](https://docs.ultralytics.com/models/yolov8/)から任意のYOLOv8モデルをダウンロードし、`models/` フォルダに配置してください。
+Download any YOLOv8 model from the [Ultralytics official site](https://docs.ultralytics.com/models/yolov8/) and place it in the `models/` folder.
 
-利用可能なモデル:
-- `yolov8n.pt` (最軽量)
+Available models:
+- `yolov8n.pt` (lightest)
 - `yolov8s.pt`
-- `yolov8m.pt` (推奨)
+- `yolov8m.pt` (recommended)
 - `yolov8l.pt`
-- `yolov8x.pt` (最高精度)
+- `yolov8x.pt` (highest accuracy)
 
-## 使い方（GUI）
+## Usage (GUI)
 
 ```bash
 python main_gui.py
 ```
 
-### GUI でできること
+### What you can do with the GUI
 
-- 入力動画の選択
-- 出力先の指定
-- Count Line の設定
-- GPU / TensorRT / バッチ推論の設定
-- 車種判別の有効化
+- Selecting input video
+- Specifying output destination
+- Setting the count line
+- Configuring GPU/TensorRT/batch inference
+- Enabling vehicle classification
 
-## 設定
+## Configuration
 
-主要な設定は `config.json` で行います。GUI から編集可能です。
+The main configuration is done in `config.json`, which can be edited from the GUI.
 
-例（抜粋）:
+Example (excerpt):
 
 ```json
-{
-  "model": {
-    "model_file": "models/yolov8m.pt",
-    "confidence_threshold": 0.3,
-    "iou_threshold": 0.4,
-    "image_size": 320
-  },
-  "performance": {
-    "use_gpu": true,
-    "use_tensorrt": false,
-    "use_batch_inference": false,
-    "batch_size": 4,
-    "frame_skip": 0
-  },
-  "lines": {
-    "mode": "dual",
-    "up_line": {"start_x": 100, "start_y": 200, "end_x": 1400, "end_y": 200},
-    "down_line": {"start_x": 100, "start_y": 300, "end_x": 1400, "end_y": 300}
-  }
+{ 
+"model": { 
+"model_file": "models/yolov8m.pt", 
+"confidence_threshold": 0.3, 
+"iou_threshold": 0.4, 
+"image_size": 320 
+}, 
+"performance": { 
+"use_gpu": true, 
+"use_tensorrt": false, 
+"use_batch_inference": false, 
+"batch_size": 4, 
+"frame_skip": 0 
+}, 
+"lines": { 
+"mode": "dual", 
+"up_line": {"start_x": 100, "start_y": 200, "end_x": 1400, "end_y": 200}, 
+"down_line": {"start_x": 100, "start_y": 300, "end_x": 1400, "end_y": 300}
+}
 }
 ```
 
-## 出力
+## Output
 
-- `results/` に CSV / JSON を出力
-- 車両画像保存を有効にすると `vehicle_images/` 以下に保存
+- Outputs CSV/JSON to `results/`
+- Saves vehicle images under `vehicle_images/` if vehicle image saving is enabled
 
-## 構成
+## Modules
 
-主要モジュール:
-
-- `main_gui.py`: GUI エントリ
-- `video_processor.py`: 処理パイプライン
-- `video_processing/`: 分割された処理モジュール
-  - `writer.py`: 非同期動画出力
-  - `image_saver.py`: 車両画像保存
-  - `counts.py`: 時間帯/車種カウント
-  - `recognition.py`: 認識結果管理
-  - `detection.py`: 検出/トラッキング設定
-  - `exporter.py`: CSV/JSON 出力
-
-## ライセンス
-
-AGPL-3.0
-
-このソフトウェアは、GNU Affero General Public License v3.0 に基づいてライセンスされています。
-
-This software is licensed under the GNU Affero General Public License v3.0.
-
-If you modify and run this software as a network service,
-you must provide the complete corresponding source code.
+- `main_gui.py`: GUI entry
+- `video_processor.py`: Processing pipeline
+- `video_processing/`: Separate processing modules
+- `writer.py`: Asynchronous video output
+- `image_saver.py`: Vehicle image saving
+- `counts.py`: Time zone/vehicle type count
+- `recognition.py`: Recognition result management
+- `detection.py`: Detection/tracking settings
+- `exporter.py`: CSV/JSON output
 
 ## Third-Party Libraries
 
@@ -172,10 +159,9 @@ Optional components:
 Each third-party library is subject to its own license.
 Please review the respective licenses before use.
 
-## 免責事項
+## License
+This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
 
-本ソフトウェアは「現状有姿」で提供され、明示または黙示を問わず、いかなる保証も行いません。
-作者および貢献者は、本ソフトウェアの使用により生じたいかなる損害に対しても責任を負いません。
-
+## Disclaimer
 This software is provided "as is" without warranty of any kind, express or implied.
 The authors and contributors shall not be liable for any damages arising from the use of this software.
